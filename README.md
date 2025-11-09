@@ -115,7 +115,7 @@ We welcome contributions! You can:
 
 ## 📬 Stay Connected
 🔗 [Subscribe for updates](https://beatzde4.blogspot.com/p/animation-for-button-fade-slide-in.html)  
-🌍 [Official Website](https://debeatzgh.wordpress.com/)  
+🌍 [Official Website](https://msha.ke/debeatzgh)  
 📖 [Decode Artificial Intelligence](https://msha.ke/debeatzgh)  
 
 ---
