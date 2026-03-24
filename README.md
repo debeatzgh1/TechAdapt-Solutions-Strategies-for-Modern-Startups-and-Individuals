@@ -372,7 +372,7 @@
         // 4. Portal Control
         function handleEngagement() {
             const frame = document.getElementById('gist-frame');
-            frame.src = "https://mailchi.mp/dda1a453c7bd/ai-decoder";
+            frame.src = "https://appdategh1.blogspot.com/";
             document.getElementById('gist-overlay').style.display = 'block';
             mControls.style.display = 'flex';
         }
