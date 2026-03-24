@@ -3,6 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | AI Tech Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --banner-bg: rgba(22, 27, 34, 0.8);
+            --text: #c9d1d9;
+            --accent: #58a6ff;
+            --cyber-cyan: #00f2ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --banner-bg: rgba(255, 255, 255, 0.8);
+            --text: #1e293b;
+            --accent: #2563eb;
+            --cyber-cyan: #0ea5e9;
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text); transition: background 0.4s, color 0.4s; overflow-x: hidden; min-height: 200vh; }
+
+        /* --- 1. TOP FLOATING BANNER --- */
+        .top-banner {
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+            width: 95%; max-width: 1200px; height: 65px;
+            background: var(--banner-bg); backdrop-filter: blur(12px);
+            border-radius: 20px; border: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 25px; z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-section { display: flex; align-items: center; gap: 12px; }
+        .ai-pulse { width: 10px; height: 10px; background: var(--cyber-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--cyber-cyan); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .nav-link { color: var(--text); font-size: 18px; cursor: pointer; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent); transform: translateY(-2px); }
+
+        /* --- 2. MODAL COMMANDS (Top-Left) --- */
+        .modal-controls {
+            position: fixed; top: 25px; left: 25px;
+            display: none; flex-direction: row; gap: 10px; z-index: 10002;
+            background: var(--banner-bg); padding: 8px; border-radius: 12px;
+            border: 1px solid var(--cyber-cyan); backdrop-filter: blur(10px);
+        }
+
+        .modal-btn {
+            background: transparent; color: var(--cyber-cyan); border: 1px solid rgba(0, 242, 255, 0.2);
+            width: 35px; height: 35px; border-radius: 8px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        }
+        .modal-btn:hover { background: var(--cyber-cyan); color: #000; box-shadow: 0 0 15px var(--cyber-cyan); }
+
+        /* --- 3. BLOGGER FLOATING BUTTON --- */
+        .floating-blogger {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; background: #ff5722; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; cursor: pointer; z-index: 999;
+            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.4);
+            animation: heartbeat 2s infinite; transition: 0.3s;
+        }
+        @keyframes heartbeat { 0% { transform: scale(1); } 10% { transform: scale(1.1); } 20% { transform: scale(1); } }
+        .floating-blogger:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* --- 4. IFRAME MODAL --- */
+        #iframe-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            display: none; z-index: 10001; padding: 80px 20px 20px 20px;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .iframe-container { 
+            width: 100%; height: 100%; background: #fff; border-radius: 24px;
+            overflow: hidden; border: 2px solid var(--cyber-cyan);
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- 5. THEME SWITCH --- */
+        .theme-toggle { background: transparent; border: none; color: var(--text); font-size: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <nav class="top-banner">
+        <div class="brand-section">
+            <div class="ai-pulse"></div>
+            <span style="font-weight: 800; letter-spacing: -0.5px; font-size: 1.1rem;">
+                DEBEATZGH <span style="color: var(--accent)">AI_LAB</span>
+            </span>
+        </div>
+
+        <div class="nav-icons">
+            <i class="fas fa-home nav-link" title="Home"></i>
+            <i class="fas fa-code nav-link" title="Projects"></i>
+            <i class="fas fa-robot nav-link" title="AI Tools"></i>
+            <div style="width: 1px; height: 20px; background: var(--glass-border); margin: 0 5px;"></div>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="modal-controls" id="mControls">
+        <button class="modal-btn" onclick="closePortal()" title="Close"><i class="fas fa-times"></i></button>
+        <button class="modal-btn" onclick="toggleFull()" title="Full Screen"><i class="fas fa-expand"></i></button>
+    </div>
+
+    <main style="padding-top: 120px; text-align: center;">
+        <h1 style="font-size: 3rem; margin-bottom: 10px;">Future-Ready Platforms</h1>
+        <p style="opacity: 0.6; max-width: 600px; margin: auto;">Integrating Ghanaian Tech Context with Global AI Standards.</p>
+    </main>
+
+    <div class="floating-blogger" onclick="openPortal('https://appdategh1.blogspot.com/')">
+        <i class="fab fa-blogger-b"></i>
+    </div>
+
+    <div id="iframe-modal">
+        <div class="iframe-container" id="iframeWrap">
+            <iframe id="portal-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // --- Theme Switcher ---
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            const current = body.getAttribute('data-theme');
+            
+            if (current === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // --- Iframe Logic ---
+        function openPortal(url) {
+            const modal = document.getElementById('iframe-modal');
+            const frame = document.getElementById('portal-frame');
+            const controls = document.getElementById('mControls');
+            
+            frame.src = url;
+            modal.style.display = 'block';
+            controls.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePortal() {
+            document.getElementById('iframe-modal').style.display = 'none';
+            document.getElementById('mControls').style.display = 'none';
+            document.getElementById('portal-frame').src = "";
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleFull() {
+            const wrap = document.getElementById('iframeWrap');
+            if (!document.fullscreenElement) {
+                wrap.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
