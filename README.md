@@ -1,3 +1,625 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Business Tools FAQ Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#07111f;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  padding:70px 20px 50px;
+  text-align:center;
+  background:
+  linear-gradient(rgba(4,9,20,.8),rgba(4,9,20,.9)),
+  url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop') center/cover;
+}
+
+.hero h1{
+  font-size:2.4rem;
+  line-height:1.2;
+  margin-bottom:18px;
+}
+
+.hero p{
+  max-width:900px;
+  margin:auto;
+  color:#d7d7d7;
+  line-height:1.8;
+}
+
+.hero-btns{
+  margin-top:28px;
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.hero-btns a{
+  text-decoration:none;
+  padding:14px 22px;
+  border-radius:50px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:#00d4ff;
+  color:#07111f;
+}
+
+.btn-secondary{
+  border:1px solid #00d4ff;
+  color:#00d4ff;
+}
+
+.hero-btns a:hover{
+  transform:translateY(-4px);
+}
+
+/* SEARCH */
+.search-wrap{
+  padding:25px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.search-box{
+  width:100%;
+  padding:16px 20px;
+  border:none;
+  border-radius:18px;
+  background:#111d2f;
+  color:#fff;
+  font-size:1rem;
+  outline:none;
+}
+
+/* FAQ */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.section-title{
+  font-size:1.6rem;
+  margin-bottom:20px;
+  color:#00d4ff;
+}
+
+.faq{
+  display:grid;
+  gap:18px;
+}
+
+.faq-item{
+  background:#101a2c;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);
+  transition:.3s;
+}
+
+.faq-item:hover{
+  transform:translateY(-4px);
+}
+
+.faq-question{
+  width:100%;
+  background:none;
+  border:none;
+  color:#fff;
+  padding:22px;
+  text-align:left;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.faq-question span{
+  color:#00d4ff;
+  font-size:1.4rem;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+  padding:0 22px;
+}
+
+.faq-answer-content{
+  padding-bottom:22px;
+  color:#d7d7d7;
+  line-height:1.9;
+}
+
+.faq-answer ul{
+  margin-top:10px;
+  padding-left:20px;
+}
+
+.faq-answer li{
+  margin-bottom:12px;
+}
+
+/* TOOL CARDS */
+.tool-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+
+.tool-card{
+  background:#101a2c;
+  padding:22px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.06);
+  transition:.3s;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px);
+}
+
+.tool-card h3{
+  margin-bottom:10px;
+  color:#00d4ff;
+}
+
+.tool-card p{
+  color:#d5d5d5;
+  line-height:1.7;
+  font-size:.95rem;
+}
+
+/* CTA */
+.cta{
+  margin:70px 20px;
+  padding:40px 25px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#00d4ff,#3a47d5);
+  text-align:center;
+}
+
+.cta h2{
+  margin-bottom:15px;
+  color:#fff;
+}
+
+.cta p{
+  max-width:900px;
+  margin:auto;
+  line-height:1.8;
+}
+
+.cta a{
+  margin-top:22px;
+  display:inline-block;
+  background:#fff;
+  color:#111;
+  padding:14px 22px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 20px;
+  color:#a7a7a7;
+}
+
+/* LAZY LOAD */
+.lazy-section{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.lazy-section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.hero h1{
+  font-size:1.8rem;
+}
+
+.section-title{
+  font-size:1.3rem;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Best Business Tools & Productivity Resources</h1>
+
+  <p>
+    Discover powerful business tools, productivity apps, collaboration platforms,
+    marketing solutions, HR systems, AI tools, automation resources, and startup ideas
+    designed to help businesses grow faster and improve customer experience.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#faq" class="btn-primary">Browse Tools</a>
+    <a href="#startup" class="btn-secondary">Get Started</a>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <input type="text" id="searchInput" class="search-box"
+  placeholder="Search FAQ, tools, startups, CRM, productivity..." />
+</div>
+
+<!-- FAQ -->
+<div class="container">
+
+  <h2 class="section-title">Frequently Asked Questions</h2>
+
+  <div class="faq" id="faq">
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        What are productivity tools?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+          Productivity tools are software applications designed to help individuals and teams organise tasks, manage time, and increase efficiency in work or personal life.
+
+          <br><br>
+
+          These apps streamline workflows, improve collaboration, optimise resource usage, and enhance customer service experiences for startups and businesses.
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        Best Task Management Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>Todoist</strong> — Organise tasks and priorities efficiently.</li>
+            <li><strong>Trello</strong> — Visual project boards and workflow tracking.</li>
+            <li><strong>Asana</strong> — Team collaboration and project management.</li>
+            <li><strong>Notion</strong> — Workspace for notes, tasks, and databases.</li>
+            <li><strong>Monday.com</strong> — Workflow automation and project planning.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        Best Communication & Collaboration Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>Slack</strong> — Real-time team messaging.</li>
+            <li><strong>Microsoft Teams</strong> — Meetings and workplace collaboration.</li>
+            <li><strong>Zoom</strong> — Video conferencing and webinars.</li>
+            <li><strong>Google Workspace</strong> — Docs, Drive, Meet, and productivity tools.</li>
+            <li><strong>Discord</strong> — Community and business communication platform.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        Best Marketing & Sales Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>HubSpot</strong> — CRM and marketing automation.</li>
+            <li><strong>Salesforce</strong> — Enterprise customer management system.</li>
+            <li><strong>MailChimp</strong> — Email marketing campaigns.</li>
+            <li><strong>SEMrush</strong> — SEO and keyword optimisation.</li>
+            <li><strong>Hootsuite</strong> — Social media scheduling and analytics.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        Accounting & Financial Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>QuickBooks</strong> — Business accounting software.</li>
+            <li><strong>Xero</strong> — Cloud accounting and bookkeeping.</li>
+            <li><strong>FreshBooks</strong> — Invoicing and expense tracking.</li>
+            <li><strong>Expensify</strong> — Expense management platform.</li>
+            <li><strong>Harvest</strong> — Time tracking and invoicing.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        HR & Employee Management Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>BambooHR</strong> — Employee onboarding and HR.</li>
+            <li><strong>Workday</strong> — HR and workforce management.</li>
+            <li><strong>Greenhouse</strong> — Recruitment management.</li>
+            <li><strong>15Five</strong> — Performance reviews and feedback.</li>
+            <li><strong>Zenefits</strong> — HR automation and benefits.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        Data Analysis & Visualisation Tools
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          <ul>
+            <li><strong>Power BI</strong> — Business intelligence dashboards.</li>
+            <li><strong>Tableau</strong> — Interactive visual analytics.</li>
+            <li><strong>Google Data Studio</strong> — Free reporting dashboards.</li>
+            <li><strong>Excel</strong> — Spreadsheet analysis and calculations.</li>
+            <li><strong>Plotly</strong> — Interactive chart creation.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item lazy-section">
+      <button class="faq-question">
+        AI Startup Ideas & Automation
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-content">
+
+          Tired of cookie-cutter startups? Build your own empire with AI tools and automation.
+
+          <br><br>
+
+          Create:
+          <ul>
+            <li>AI-powered eCommerce websites</li>
+            <li>Android and Web Apps</li>
+            <li>Customer service chatbots</li>
+            <li>AI business assistants</li>
+            <li>Automated marketing systems</li>
+          </ul>
+
+          You no longer need advanced coding skills to launch powerful online businesses.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOOL CARDS -->
+  <div class="tool-grid lazy-section">
+
+    <div class="tool-card">
+      <h3>Hosting & Domains</h3>
+      <p>
+        Domain registration, cloud hosting, VPS servers,
+        WordPress hosting, and website deployment tools.
+      </p>
+    </div>
+
+    <div class="tool-card">
+      <h3>E-commerce Tools</h3>
+      <p>
+        Astra, Ecwid, Take App, and dropshipping solutions
+        for launching online stores quickly.
+      </p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Affiliate Platforms</h3>
+      <p>
+        Adsterra, Spocket, Fiverr affiliate tools,
+        CPM management, and monetisation systems.
+      </p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Customer Service</h3>
+      <p>
+        LiveChat, WhatsApp commerce, CRM systems,
+        and customer engagement widgets.
+      </p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Creative Tools</h3>
+      <p>
+        Canva, Stylesi AI, Elfsight, and modern
+        design platforms for business branding.
+      </p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Business Forms & CRM</h3>
+      <p>
+        Jotform CRM, Viquote Canvas,
+        automation forms, and workflow systems.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta lazy-section" id="startup">
+
+  <h2>Build Your Startup With AI</h2>
+
+  <p>
+    AI is transforming businesses worldwide. Launch smarter startups,
+    automate customer service, improve productivity, and create scalable
+    digital products with powerful business tools and automation systems.
+  </p>
+
+  <a href="#">Browse Tools & Resources</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Business Tools Hub • Productivity • AI • Startups • Automation
+</footer>
+
+<script>
+
+/* FAQ TOGGLE */
+document.querySelectorAll(".faq-question").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector("span");
+
+    if(answer.style.maxHeight){
+      answer.style.maxHeight = null;
+      icon.textContent = "+";
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+      icon.textContent = "−";
+    }
+
+  });
+
+});
+
+/* SEARCH FILTER */
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
+
+  const filter = this.value.toLowerCase();
+  const items = document.querySelectorAll(".faq-item");
+
+  items.forEach(item => {
+
+    const text = item.innerText.toLowerCase();
+
+    if(text.includes(filter)){
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+
+  });
+
+});
+
+/* LAZY LOAD ANIMATION */
+const lazySections = document.querySelectorAll(".lazy-section");
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+
+  });
+
+}, {
+  threshold:0.1
+});
+
+lazySections.forEach(section => {
+  observer.observe(section);
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
 <style>
 /* 1. RESET & VARIABLES */
 :root {
