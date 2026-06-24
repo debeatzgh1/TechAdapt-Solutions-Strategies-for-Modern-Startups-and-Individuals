@@ -1,4 +1,689 @@
-  
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Business FAQ Hub</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--bg:#07111f;
+--card:#101a2c;
+--accent:#00d4ff;
+--text:#ffffff;
+--muted:#cfd8e3;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(180deg,#07111f,#091827);
+color:var(--text);
+overflow-x:hidden;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+padding:90px 20px 60px;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop') center/cover;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(0,212,255,.15);
+filter:blur(100px);
+top:-100px;
+left:-100px;
+animation:floatGlow 8s infinite alternate;
+}
+
+@keyframes floatGlow{
+0%{transform:translateY(0px);}
+100%{transform:translateY(40px);}
+}
+
+.hero h1{
+font-size:2.8rem;
+margin-bottom:18px;
+position:relative;
+z-index:2;
+}
+
+.hero p{
+max-width:900px;
+margin:auto;
+line-height:1.8;
+color:#d5d5d5;
+position:relative;
+z-index:2;
+}
+
+.hero-btns{
+margin-top:28px;
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+position:relative;
+z-index:2;
+}
+
+.hero-btns a{
+padding:14px 24px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+transition:.3s;
+}
+
+.primary-btn{
+background:var(--accent);
+color:#07111f;
+}
+
+.secondary-btn{
+border:1px solid var(--accent);
+color:var(--accent);
+}
+
+.hero-btns a:hover{
+transform:translateY(-5px);
+}
+
+/* ================= AUTO SLIDER ================= */
+
+.auto-slider{
+padding:20px;
+overflow:hidden;
+position:relative;
+}
+
+.slider-track{
+display:flex;
+gap:18px;
+animation:slideX 30s linear infinite;
+width:max-content;
+}
+
+@keyframes slideX{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+.slide-card{
+min-width:280px;
+background:var(--card);
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.06);
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.slide-card h3{
+color:var(--accent);
+margin-bottom:12px;
+}
+
+.slide-card p{
+color:#d5d5d5;
+line-height:1.7;
+font-size:.95rem;
+}
+
+/* ================= SEARCH ================= */
+
+.search-wrap{
+max-width:1100px;
+margin:25px auto;
+padding:0 20px;
+}
+
+.search-box{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+background:#111d2f;
+color:#fff;
+font-size:1rem;
+outline:none;
+}
+
+/* ================= FAQ ================= */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.section-title{
+font-size:1.7rem;
+margin-bottom:20px;
+color:var(--accent);
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.faq{
+display:grid;
+gap:18px;
+}
+
+.faq-item{
+background:var(--card);
+border-radius:18px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.06);
+transition:.3s;
+opacity:0;
+transform:translateY(40px);
+}
+
+.faq-item.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.faq-item:hover{
+transform:translateY(-5px);
+}
+
+.faq-question{
+width:100%;
+background:none;
+border:none;
+padding:22px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:1rem;
+font-weight:700;
+color:#fff;
+cursor:pointer;
+}
+
+.faq-question span{
+font-size:1.4rem;
+color:var(--accent);
+}
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+transition:max-height .5s ease;
+padding:0 22px;
+}
+
+.faq-answer-content{
+padding-bottom:22px;
+line-height:1.8;
+color:#d5d5d5;
+}
+
+/* ================= TAGS ================= */
+
+.tags{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.tag{
+background:rgba(0,212,255,.12);
+color:var(--accent);
+padding:8px 12px;
+border-radius:40px;
+font-size:.8rem;
+}
+
+/* ================= POPUP ================= */
+
+.popup{
+position:fixed;
+right:20px;
+bottom:20px;
+width:320px;
+background:#0f172a;
+border:1px solid rgba(255,255,255,.08);
+padding:20px;
+border-radius:20px;
+z-index:99999;
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+animation:popupSlide .7s ease;
+}
+
+@keyframes popupSlide{
+from{
+transform:translateY(40px);
+opacity:0;
+}
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+.popup h3{
+margin-bottom:10px;
+color:var(--accent);
+}
+
+.popup p{
+font-size:.92rem;
+line-height:1.7;
+color:#d5d5d5;
+}
+
+.popup button{
+margin-top:14px;
+padding:10px 16px;
+border:none;
+background:var(--accent);
+color:#07111f;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+}
+
+/* ================= FLOATING BUTTON ================= */
+
+.float-btn{
+position:fixed;
+bottom:25px;
+left:20px;
+width:58px;
+height:58px;
+border-radius:50%;
+background:linear-gradient(135deg,#00d4ff,#3a47d5);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:#fff;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+z-index:99999;
+animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+/* ================= TOOL GRID ================= */
+
+.tool-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
+margin-top:40px;
+}
+
+.tool-card{
+background:var(--card);
+padding:22px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.05);
+transition:.3s;
+}
+
+.tool-card:hover{
+transform:translateY(-6px);
+}
+
+.tool-card h3{
+margin-bottom:10px;
+color:var(--accent);
+}
+
+.tool-card p{
+line-height:1.7;
+color:#d5d5d5;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+padding:40px 20px;
+text-align:center;
+color:#a7a7a7;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2rem;
+}
+
+.popup{
+width:90%;
+right:5%;
+bottom:15px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>AI Business Tools & Startup FAQ Hub</h1>
+
+<p>
+Explore modern business tools, startup automation systems,
+AI productivity resources, digital marketing platforms,
+customer engagement software, CRM tools, and online business ideas.
+</p>
+
+<div class="hero-btns">
+<a href="#faq" class="primary-btn">Browse FAQ</a>
+<a href="#tools" class="secondary-btn">Explore Tools</a>
+</div>
+
+</section>
+
+<!-- AUTO SLIDE -->
+
+<section class="auto-slider">
+
+<div class="slider-track">
+
+<div class="slide-card">
+<h3><i class="fa-solid fa-robot"></i> AI Automation</h3>
+<p>Create smart workflows and automate repetitive business tasks with AI systems.</p>
+</div>
+
+<div class="slide-card">
+<h3><i class="fa-solid fa-chart-line"></i> Startup Growth</h3>
+<p>Launch scalable startups using modern productivity and marketing tools.</p>
+</div>
+
+<div class="slide-card">
+<h3><i class="fa-solid fa-store"></i> Online Business</h3>
+<p>Build eCommerce stores, affiliate systems, and digital product platforms.</p>
+</div>
+
+<div class="slide-card">
+<h3><i class="fa-solid fa-users"></i> Customer Experience</h3>
+<p>Improve engagement with CRM, chatbots, and support automation.</p>
+</div>
+
+<div class="slide-card">
+<h3><i class="fa-solid fa-laptop-code"></i> AI Development</h3>
+<p>Create web apps, AI assistants, and monetization systems with modern tools.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SEARCH -->
+
+<div class="search-wrap">
+<input type="text" class="search-box" id="searchInput"
+placeholder="Search FAQ, AI tools, CRM, startups, marketing..." />
+</div>
+
+<!-- FAQ -->
+
+<div class="container">
+
+<h2 class="section-title">
+<i class="fa-solid fa-circle-question"></i>
+Frequently Asked Questions
+</h2>
+
+<div class="faq" id="faq">
+
+<div class="faq-item lazy-load">
+<button class="faq-question">
+What are productivity tools?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<div class="faq-answer-content">
+
+Productivity tools help businesses organise tasks,
+improve workflows, manage time efficiently,
+and increase collaboration across teams.
+
+<div class="tags">
+<div class="tag">Productivity</div>
+<div class="tag">Automation</div>
+<div class="tag">Business</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="faq-item lazy-load">
+<button class="faq-question">
+Best AI Startup Ideas
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<div class="faq-answer-content">
+
+<ul>
+<li>AI customer service chatbots</li>
+<li>AI content generation tools</li>
+<li>AI-powered eCommerce stores</li>
+<li>AI automation agencies</li>
+<li>AI design and branding services</li>
+</ul>
+
+<div class="tags">
+<div class="tag">AI</div>
+<div class="tag">Startup</div>
+<div class="tag">Automation</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="faq-item lazy-load">
+<button class="faq-question">
+Best Marketing Platforms
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<div class="faq-answer-content">
+
+<ul>
+<li>HubSpot CRM</li>
+<li>MailChimp</li>
+<li>SEMrush</li>
+<li>Canva</li>
+<li>Hootsuite</li>
+</ul>
+
+<div class="tags">
+<div class="tag">Marketing</div>
+<div class="tag">CRM</div>
+<div class="tag">SEO</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- TOOLS -->
+
+<div class="tool-grid" id="tools">
+
+<div class="tool-card">
+<h3><i class="fa-solid fa-server"></i> Hosting & Domains</h3>
+<p>Cloud hosting, domains, WordPress deployment, and scalable infrastructure systems.</p>
+</div>
+
+<div class="tool-card">
+<h3><i class="fa-solid fa-cart-shopping"></i> eCommerce</h3>
+<p>Build online stores using automation, affiliate systems, and dropshipping platforms.</p>
+</div>
+
+<div class="tool-card">
+<h3><i class="fa-solid fa-comments"></i> Customer Service</h3>
+<p>Improve support with WhatsApp commerce, live chat, CRM, and AI assistants.</p>
+</div>
+
+<div class="tool-card">
+<h3><i class="fa-solid fa-palette"></i> Creative Tools</h3>
+<p>Create professional branding using Canva, AI design systems, and templates.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="popup" id="popupBox">
+<h3>🚀 AI Startup Insights</h3>
+
+<p>
+Build smarter online businesses using AI automation,
+customer service systems, productivity tools,
+and digital monetization platforms.
+</p>
+
+<button onclick="closePopup()">Explore</button>
+
+</div>
+
+<!-- FLOATING BUTTON -->
+
+<div class="float-btn" onclick="scrollToTop()">
+<i class="fa-solid fa-arrow-up"></i>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 AI Business FAQ Hub • Startups • Automation • Productivity
+</footer>
+
+<script>
+
+/* FAQ TOGGLE */
+
+document.querySelectorAll(".faq-question").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const answer = btn.nextElementSibling;
+const icon = btn.querySelector("span");
+
+if(answer.style.maxHeight){
+answer.style.maxHeight = null;
+icon.textContent = "+";
+}else{
+answer.style.maxHeight = answer.scrollHeight + "px";
+icon.textContent = "−";
+}
+
+});
+
+});
+
+/* SEARCH */
+
+document.getElementById("searchInput")
+.addEventListener("keyup",function(){
+
+const value = this.value.toLowerCase();
+
+document.querySelectorAll(".faq-item")
+.forEach(item=>{
+
+item.style.display =
+item.innerText.toLowerCase().includes(value)
+? "block":"none";
+
+});
+
+});
+
+/* LAZY LOAD */
+
+const observer = new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+
+});
+
+},{threshold:.1});
+
+document.querySelectorAll(".faq-item")
+.forEach(el=>observer.observe(el));
+
+/* POPUP */
+
+function closePopup(){
+document.getElementById("popupBox").style.display="none";
+}
+
+setTimeout(()=>{
+document.getElementById("popupBox").style.display="block";
+},2500);
+
+/* FLOAT BUTTON */
+
+function scrollToTop(){
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
+</script>
+
+</body>
+</html>
+
 
 
 
